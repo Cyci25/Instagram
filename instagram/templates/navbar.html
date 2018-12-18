@@ -1,0 +1,66 @@
+{% load static %}
+<link href="https://fonts.googleapis.com/css?family=Archivo+Narrow|Charmonman|Kodchasan|Dancing+Script|Spirax" rel="stylesheet">
+
+<nav class="navbar bg-light ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{% url 'homePage' %}"><img src="{% static 'photos/instaicon1.jpg' %}" style="height:30px;width:36px;">
+      </a>
+      <a class="navbar-brand" id="victor" href="{% url 'homePage' %}">Instagram
+      </a>
+    </div>
+    <div class="col-sm-6 col-md-6">
+      {% if user.is_authenticated %}
+
+      <li style="font-family: 'Oswald', sans-serif;">
+        <a href="{%url 'edit_profile'%}">Update Profile</a>
+      </li>
+
+      <li style="font-family: 'Oswald', sans-serif;">
+        <a href="{% url 'individual_profile_page' user.id %}">My Profile</a>
+      </li>
+                   <li style="font-family: 'Oswald', sans-serif;">
+                    <a href="{%url 'new_image'%}">Upload</a>
+                  </li>
+      <li style="font-family: 'Oswald', sans-serif;">
+        <a href="/accounts/password/change">Change Password</a>
+      </li>
+
+      <li style="font-family: 'Oswald', sans-serif;">
+        <a href="/logout">Logout</a>
+      </li>
+
+      {% else %}
+      <li style="font-family: 'Oswald', sans-serif;">
+        <a class='btn btn-default' href="/accounts/login">Login</a>
+      </li>
+
+      <li style="font-family: 'Oswald', sans-serif;">
+        <a class='btn btn-default' href="/accounts/register">Register</a>
+      </li>
+
+
+
+      {% endif %}
+    </div>
+
+
+    <!-- Adding a search form  -->
+    <div class="col-sm-4 col-md-4 navbar-right">
+
+      <form class="navbar-form" role="search" action="{% url 'search_users' %}">
+
+        <div class="input-group">
+          <input type="text" class="form-control mr-sm-4" placeholder="Search User" name="user">
+          <div class="input-group-btn">
+            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Find</button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+    <!-- search form end -->
+
+
+  </div>
+</nav>
