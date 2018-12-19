@@ -1,0 +1,233 @@
+{% extends 'registration/base.html' %}
+
+{% load static %}
+
+{% load friendshiptags %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Chicle|Lateef" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+{% endblock %}
+{% block content %}
+{{ form.media }}
+<div class="container-fluid col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <nav class="navbar">
+                <a href="/"><section class="logo-section"><img class="logo" src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png"/>
+                    <div></div><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"/>
+                </section></a>
+                <form class="search-section" action="{% url 'search_profile' %}">
+                    <input class="input-search" style="width: 250px !important;height: 28px;background: rgb(240, 240, 240);opacity: 0.5;" type="search" id="search" name="search" placeholder=" &#xF002;   search"/>
+                </form>
+                {% if user.is_authenticated %}
+                <section class="icons-section"><a class="fa fa-compass" style="font-size:25px;" href="#"></a><i class="fa fa-heart" style="font-size:25px;" ></i>
+                    <a href="{% url 'upload_image'%}"> <i class="fas fa-upload" style="font-size:25px;color: black;"></i></a>
+                </section>
+                {%endif%}
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container ">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="row">
+                <div style="overflow:hidden;border-radius: 50%; width:103px;height:103px;">
+                    <span style="text-align:center;">     {% if details.pic %}
+                        <img class="img-rounded" src="{{details.pic.url}}" alt="photo">
+                        {% else %}
+                        <img class="img-rounded" src=" {% static 'photos/avatar.png' %}">
+                        {% endif %}
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-5 text-center" id="info">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <span class="" style="font-weight:bolder;font-size:20px;font-family: 'Lateef', cursive;
+                                font-size: 20px !important;">{{ details.user }}</span>
+                            </li>
+                            &nbsp;&nbsp;
+                            {% if profile.user.id == user.id %}
+                            <li class="list-inline-item">
+                            &nbsp;&nbsp;&nbsp;<i class="fas fa-ellipsis-h"data-toggle="modal" data-target="#settings"  style="font-size:20px;"></i>
+                                </li>
+                               
+                                            {% else %}
+                                            <li class="list-inline-item">
+                                               
+                                                &nbsp;&nbsp;
+                                                {% endif %}
+
+                                                {% if profiles in people %}
+                                                <li class="list-inline-item">
+                                                    <a href="/unfollow/{{profile.id}}"><button>Following</button></a>
+                                                    </li>
+                                                    {% else %}
+                                                <a href="/follow/{{profile.id}}" class="btn-md btn btn-primary" style="width:110px;height:32px;font-weight:bolder;background:rgb(84, 84, 240);border: solid rgb(84, 84, 240);font-family: 'Lateef', cursive;
+                                                font-size: 20px !important;">Follow</a> &nbsp;&nbsp;<i class="fas fa-ellipsis-h"data-toggle="modal" data-target="#settings"  style="font-size:20px;"></i>
+                                            </li>
+                                            <div class="modal fade" style="padding-top: 250px;" id="settings" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-body">
+                                                                <ul class="list-group">
+                                                                    <li class="list-group-item text-center"><a style="color:black;font-family: 'Lateef', cursive;
+                                                                        font-size: 20px !important;"  href="/accounts/password/change">Change Password</a></li>
+                                                                        <li class="list-group-item text-center"><a style="color:black;font-family: 'Lateef', cursive;
+                                                                            font-size: 20px !important;" href="/logout/">Log Out</a></li>
+                                                                            <li class="list-group-item text-center"><a style="color:black;font-family: 'Lateef', cursive;
+                                                                                font-size: 20px !important;" data-dismiss="modal">Cancel</a></li>
+                                                                                
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                            
+                                            {% endif %}
+                                            
+                                        </ul>
+                                        <ul class="list-inline lists" style="padding-left:60px !important;">
+                                            <li class="list-inline-item">
+                                                <span class="font-weight-bold"><b>{{images|length}}</b>  Posts</span>
+                                            </li>
+                                            <span class="font-weight-bold"> <b>{{following}}</b>  Following</span>
+                                            <span class="font-weight-bold" > <b>{{followers}} </b>Followers</span>
+                                        </ul>
+                                        <p style="font-family: 'Lateef', cursive !important;
+                                        font-size: 26px !important;"><b>{{details.bio}}</b></p>
+                                        {% if profile.user == user.id %}
+                                        <p><a href= "{% url 'upload_image' %}" style="font-family: 'Lateef', cursive;
+                                            font-size: 20px !important;">Add Image</a></p>
+                                            {% endif %}
+                                        </div></span>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="container image" style="padding-bottom:60px !important;">
+                                    <div class="row">
+                                        {% for image in images %}
+                                        <div class="col-md-3" style="left:50px;">
+                                            <div class="card" style="width: auto;">
+                                                <img src="{{image.image.url}}" alt="Image" class="card-img-top" style="width:270px;height:200px;">
+                                            </div>
+                                            <div class="container">
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <a href=" {% url 'like' image_id=image.id %}">
+                                                        </a>
+                                                        
+                                                        <a href=" {% url 'comment' image_id=image.id %}">
+                                                        </a>
+                                                    </li>
+                                                    <p style="font-family: 'Lateef', cursive;
+                                                    font-size: 21px !important;">{{image.count_likes}} likes</p>
+                                                    <p style="font-family: 'Lateef', cursive;
+                                                    font-size: 21px !important;">{{image.comment.count}} comments</p>
+                                                    
+                                                </ul>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <h5 style="font-family: 'Lateef', cursive;
+                                                        font-size: 21px !important;"><strong>{{image.profile.username}}</strong> {{image.caption}}</h5>
+                                                        
+                                                    </li>
+                                                </ul>
+                                                
+                                            </div>
+                                            
+                                        </div>
+                                        {% empty %}
+                                        <div class="col-md-12">
+                                            <h2><a href= "{% url 'upload_image' %}">Add Image</a></h2>
+                                            
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                            <style>
+                                #info{
+                                    bottom: 70px;
+                                }
+                                .navbar {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    padding: 20px;
+                                    border-bottom: 1px solid #ddd;
+                                    background: rgb(255, 255, 255);
+                                    height: 76px;
+                                    width: 100%;
+                                    position: fixed;
+                                    z-index: 1;
+                                }
+                                .navbar .logo-section {
+                                    display: flex;
+                                    align-items: center;
+                                }
+                                .navbar .logo-section div {
+                                    align-self: stretch;
+                                    width: 1px;
+                                    background: black;
+                                    margin: 0 20px;
+                                }
+                                .navbar .icons-section .fa {
+                                    text-decoration: none;
+                                    color: inherit;
+                                    font-size: 2rem;
+                                    margin: 0 10px;
+                                }
+                                .navbar .logo {
+                                    width: 40px;
+                                }
+                                .navbar .logoname {
+                                    width: 130px;
+                                }
+                                .navbar .input-search {
+                                    padding: 10px;
+                                    text-align: center;
+                                    border-radius: 5px;
+                                    border: 2px solix #ddd;
+                                    outline: 0;
+                                }
+                                .navbar .input-search:focus {
+                                    text-align: left;
+                                }
+                                .icons-section{
+                                    font-size: 40px !important;
+                                }
+                                #search{
+                                    font-family:FontAwesome !important;
+                                }
+                                ::placeholder{
+                                    font-size: 17px;
+                                }
+                                .logo-section{
+                                    padding-left: 150px;
+                                    font-weight: lighter;
+                                }
+                                .lists{
+                                    font-size: 15px;
+                                }
+                                #info{
+                                    padding-left: 100px;
+                                }
+                                .font-weight-bold{
+                                    font-family: 'Lateef', cursive !important;
+                                    font-size: 24px !important;
+                                }
+                            </style>
+                            {% endblock %}

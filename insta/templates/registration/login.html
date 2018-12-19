@@ -1,0 +1,103 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <div class="row">
+          <center>
+               <!-- Empty div -->
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4"></div>
+          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+            {% if form.errors %}
+              <p> Password or Username is incorrect </p>
+            {% endif %}
+            <br>
+            <br>
+            <br>
+           
+        <div class="container">
+          
+        </div>
+            <div class="well">
+                <h3 class="text-center title">Instagram</h3>
+                <div class="panel-body">
+      
+                    <form  action="/accounts/login/" method="post">
+                      {% csrf_token %}
+                      {% bootstrap_form form%}
+          
+                      <div class="form-group">
+                        <input type="submit" class="btn btn-primary btn-sm" value="Login">
+                      </div>
+          
+                      <input type="hidden" name="next" value="{{next}}">
+          
+                    </form>
+          
+                  </div>
+      
+            </div>
+            <div class="well">
+                <center>
+                  <p class="have">Don't have an account? <a href="/accounts/register/">Sign Up</a> </p>
+                </center>
+              </div>
+              <div class="bottom">
+                  <p class="have">Get the app.</p>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pics">
+                      <img src="/static/photos/12.png" class="img-responsive" alt="" id="images">
+                  </div>
+                  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pics">
+                      <img src="/static/photos/ii.png" class="img-responsive" alt="" id="images">
+                  </div>
+              </div>
+      
+          </div>
+          <!-- empty div -->
+          <div class="col-md-4"></div>
+          </center>
+        </div>
+      </div>
+</body>
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Lateef|Lato|Oleo+Script');
+  .btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  width: 100% !important;
+  font-size: 23px;
+}
+.well{
+  background: white !important;
+  font-family: 'Lateef', cursive;
+  font-size: 23px;
+}
+body{
+  background: rgb(245, 245, 245);
+}
+.have{
+  font-family: 'Lateef', cursive;
+  font-size: 23px;
+}
+.pics{
+  margin-top: -50px;
+}
+#images{
+  font-size: 10px !important;
+}
+#id_username{
+  font-size: 20px;
+}
+#id_password{
+  font-size: 20px;
+}
+</style>
+{% endblock %}

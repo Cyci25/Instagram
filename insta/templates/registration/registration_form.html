@@ -1,0 +1,87 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+{{block.super}}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+
+      <div class="container">
+        
+            <center>
+                 <!-- Empty div -->
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4"></div>
+            <div class="col-xs-6 col-sm-6 col-md-4 col-lg-4">
+              {% if form.errors %}
+                <p> Password or Username is incorrect </p>
+              {% endif %}
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+             
+         
+          
+              <div class="photos " >
+                  <img src="/static/photos/phone.png" class="img-responsive"id="picha" alt="">
+              </div>
+           
+       
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 well">
+                  <h3 class="text-center title">Instagram</h3>
+        
+                      <form  action="/accounts/register/"  method="post">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <p>
+                            {{ field.label_tag }}<br>
+                            {{ field }}
+                            {% if field.help_text %}
+                              <small style="display: none">{{ field.help_text }}</small>
+                            {% endif %}
+                            {% for error in field.errors %}
+                              <p style="color: red">{{ error }}</p>
+                            {% endfor %}
+                          </p>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-primary">Sign up</button>
+                      </form>
+            
+             
+        
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 well">
+                  <center>
+                    <p class="have">Have an account? <a href="/accounts/login">Log in</a> </p>
+                  </center>
+                  <div class="bottom">
+                      <p class="have">Get the app.</p>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pics">
+                          <img src="/static/photos/12.png" class="img-responsive" alt="" id="images">
+                      </div>
+                      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pics">
+                          <img src="/static/photos/ii.png" class="img-responsive" alt="" id="images">
+                      </div>
+                  </div>
+                </div>
+        
+            </div>
+            <!-- empty div -->
+            <div class="col-md-4"></div>
+            </center>
+     
+        </div>
+<style>
+  .btn-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  height: 37px;
+}
+</style>
+{% endblock %}
+
