@@ -6,103 +6,121 @@
 {% block styles %}
 {{block.super}}
 <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+  crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
- 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 {% endblock %}
-  {% block content %}
-  <!DOCTYPE html>
+{% block content %}
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
 
- <meta charset="utf-8">
- <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
-      
 
-    <nav class="navbar">
-      <a href="/"><section class="logo-section"><img class="logo" src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png"/>
-        <div></div><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png"/>
-      </section></a>
-        <form class="search-section" role="search" action="{% url 'search_profile' %}">
-          <input class="input-search" style="width: 250px !important;height: 28px;background: rgb(240, 240, 240);opacity: 0.5;" type="search" id="search" name="username" placeholder=" &#xF002;   search"/>
-        </form>
-        <section class="icons-section">
-          <a href="{% url 'profile' %}"> <i class="fa fa-user" style="font-size:25px;color: black;"></i></a>
-          {% if user.is_authenticated %}
-          <a href="{% url 'upload_image'%}"> <i class="fas fa-upload" style="font-size:25px;color: black;"></i></a>&nbsp;&nbsp;</section>
-              
-       
-          
-     
-          
-         {%endif%}
-      </nav>
+<body>
+
+
+  <nav class="navbar">
+    <a href="/">
+      <section class="logo-section"><img class="logo" src="https://seeklogo.com/images/I/instagram-new-2016-glyph-logo-84CB825424-seeklogo.com.png" />
+        <div></div><img class="logoname" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/2000px-Instagram_logo.svg.png" />
+      </section>
+    </a>
+    <form class="search-section" role="search" action="{% url 'search_profile' %}">
+      <input class="input-search" style="width: 250px !important;height: 28px;background: rgb(240, 240, 240);opacity: 0.5;"
+        type="search" id="search" name="username" placeholder=" &#xF002;   search" />
+    </form>
+    <section class="icons-section">
+      <a href="{% url 'profile' %}"> <i class="fa fa-user" style="font-size:25px;color: black;"></i></a>
+      {% if user.is_authenticated %}
+      <a href="{% url 'upload_image'%}"> <i class="fas fa-upload" style="font-size:25px;color: black;"></i></a>&nbsp;&nbsp;</section>
+
+
+
+
+
+    {%endif%}
+  </nav>
 </body>
+
 </html>
 <style>
   .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #ddd;
-  background: rgb(255, 255, 255);
-  height: 76px;
-  width: 100%;
-  position: fixed;
-  z-index: 1;
-    
-}
-.navbar .logo-section {
-  display: flex;
-  align-items: center;
-}
-.navbar .logo-section div {
-  align-self: stretch;
-  width: 1px;
-  background: black;
-  margin: 0 20px;
-}
-.navbar .icons-section .fa {
-  text-decoration: none;
-  color: inherit;
-  font-size: 2rem;
-  margin: 0 10px;
-}
-.navbar .logo {
-  width: 40px;
-}
-.navbar .logoname {
-  width: 130px;
-}
-.navbar .input-search {
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  border: 2px solix #ddd;
-  outline: 0;
-}
-.navbar .input-search:focus {
-  text-align: left;
-}
-.icons-section{
-  font-size: 40px !important;
-}
-#search{
-  font-family:FontAwesome !important;
-}
-::placeholder{
-  font-size: 17px;
-}
-.logo-section{
-  padding-left: 150px;
-  font-weight: lighter;
-}
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    background: rgb(255, 255, 255);
+    height: 76px;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+
+  }
+
+  .navbar .logo-section {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar .logo-section div {
+    align-self: stretch;
+    width: 1px;
+    background: black;
+    margin: 0 20px;
+  }
+
+  .navbar .icons-section .fa {
+    text-decoration: none;
+    color: inherit;
+    font-size: 2rem;
+    margin: 0 10px;
+  }
+
+  .navbar .logo {
+    width: 40px;
+  }
+
+  .navbar .logoname {
+    width: 130px;
+  }
+
+  .navbar .input-search {
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solix #ddd;
+    outline: 0;
+  }
+
+  .navbar .input-search:focus {
+    text-align: left;
+  }
+
+  .icons-section {
+    font-size: 40px !important;
+  }
+
+  #search {
+    font-family: FontAwesome !important;
+  }
+
+  ::placeholder {
+    font-size: 17px;
+  }
+
+  .logo-section {
+    padding-left: 150px;
+    font-weight: lighter;
+  }
 </style>
 {% endblock%}

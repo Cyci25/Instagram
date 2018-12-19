@@ -32,7 +32,8 @@
                     <a href="{% url 'viewprofile' id=image.profile.id  %}"> <img src="{{image.image.url}}" class="img-responsive imagee"
                             alt="" style="height:600px !important;width: 100% !important;position: center;size: cover;"></a>
                     <hr>
-                    <p class="text-muted" style="color:black !important;">Posted <b>{{image.posted_on|timesince}}</b> ago</p>
+                    <p class="text-muted" style="color:black !important;">Posted <b>{{image.posted_on|timesince}}</b>
+                        ago</p>
                     <br>
 
                     <ul class="list-inline">
@@ -64,11 +65,12 @@
                         {% endif %}
                         {% endfor %}
                         <div class="comment-input-wrapper">
-                                <form action="{% url 'comment' image_id=image.id %}" method="post">
-                                    {% csrf_token %}
-                                    <input class="add-comment" name="comment_itself" id="comment{{image.id}}" type="text" placeholder="Comment on this image....">
-                                </form>
-                            </div>
+                            <form action="{% url 'comment' image_id=image.id %}" method="post">
+                                {% csrf_token %}
+                                <input class="add-comment" name="comment_itself" id="comment{{image.id}}" type="text"
+                                    placeholder="Comment on this image....">
+                            </form>
+                        </div>
                     </div>
 
                 </div>
