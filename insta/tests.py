@@ -8,7 +8,7 @@ class ProfileTestClass(TestCase):
     '''
     def setUp(self):
       
-        self.profile = Profile(bio='bio example', pic='example.jpeg')
+        self.profile = Profile(bio='bio trial', pic='trial.jpeg')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.profile, Profile))
@@ -36,10 +36,10 @@ class ImageTestClass(TestCase):
     Tests the Image class and its functions and methods
     '''
     def setUp(self):
-        self.image = Image(name='example', caption='example caption')
+        self.image = Image(name='trial', caption='trial caption')
         self.image.save_image()
  
-        self.image = Image(name='example',image='example.jpg', caption='example caption', posted_on='two minutes ago', profile=self.profile)
+        self.image = Image(name='trial',image='trial.jpg', caption='trial caption', posted_on='two minutes ago', profile=self.profile)
 
     def test_instance(self):
         self.assertTrue(isinstance(self.image, Image))
@@ -65,9 +65,9 @@ class ImageTestClass(TestCase):
         Function to test that an image's details can be updated
         """
         self.image.save_image()
-        new_image = Image.objects.filter(caption='example caption').update(caption='example')
-        images = Image.objects.get(caption='example')
-        self.assertTrue(images.caption, 'example')
+        new_image = Image.objects.filter(caption='trial caption').update(caption='trial')
+        images = Image.objects.get(caption='trial')
+        self.assertTrue(images.caption, 'trial')
     
 
 class CommentTestClass(TestCase):
